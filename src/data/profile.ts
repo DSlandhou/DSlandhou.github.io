@@ -4,7 +4,7 @@ export type BilingualText = {
 };
 
 export const profile = {
-  name: 'Bernardino Cristian',
+  name: 'GatsbyH',
   monogram: 'BC.',
   handle: 'DSlandhou',
   location: 'Hangzhou, China',
@@ -14,10 +14,10 @@ export const profile = {
   x: '',
   introduction: {
     en: 'Information Management and Information Systems at Zhejiang University.',
-    zh: '浙江大学信息管理与信息系统专业。',
+    zh: '浙江大学信息管理与信息系统',
   },
   currentFocus: [
-    { en: 'Complete undergraduate studies', zh: '完成本科学业' },
+    
     { en: 'Build a disciplined study system', zh: '建立稳定的学习系统' },
     { en: 'Find an internship opportunity', zh: '寻找实习机会' },
     { en: 'Prepare graduate applications abroad', zh: '准备海外研究生申请' },
