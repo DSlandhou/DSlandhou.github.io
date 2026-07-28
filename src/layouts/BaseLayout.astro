@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Notes, research, and work in progress.' } = Astro.props;
+const pathname = Astro.url.pathname;
+const navItems = [
+  { href: '/', en: 'Notes', zh: '笔记' },
+  { href: '/resume', en: 'Resume', zh: '' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f3f2ef" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Home">{profile.monogram}</a>
+      <nav aria-label="Primary navigation">
+        {navItems.map((item) => (
+          <a class:list={{ active: pathname === item.href || (item.href === '/' && pathname.startsWith('/notes')) }} href={item.href}>
+            {item.en}{item.zh && <span class="nav-translation" lang="zh-CN">{item.zh}</span>}
+          </a>
+        ))}
+      </nav>
+      <a class="write-link" href="/write">Write <span lang="zh-CN">记一条</span></a>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <span>© {new Date().getFullYear()} {profile.name}.</span>
+      <span>Made slowly, in public.</span>
+    </footer>
+  </body>
+</html>

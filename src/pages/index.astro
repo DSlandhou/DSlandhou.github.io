@@ -1,0 +1,120 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { kanyeAlbumRotation } from '../data/kanye-albums';
+import { profile } from '../data/profile';
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const recentNotes = notes.slice(0, 10);
+const [featuredNote, ...otherNotes] = recentNotes;
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(date);
+
+const dateKey = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const notesByDay = new Map<string, number>();
+for (const note of notes) {
+  const key = dateKey(note.data.publishedAt);
+  notesByDay.set(key, (notesByDay.get(key) ?? 0) + 1);
+}
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const activityDays = Array.from({ length: 182 }, (_, index) => {
+  const date = new Date(today);
+  date.setDate(today.getDate() - 181 + index);
+  const count = notesByDay.get(dateKey(date)) ?? 0;
+  return {
+    count,
+    level: count === 0 ? 0 : Math.min(count, 4),
+    label: `${dateKey(date)}: ${count} ${count === 1 ? 'note' : 'notes'}`,
+  };
+});
+
+const albumFor = (index: number) => kanyeAlbumRotation[index % kanyeAlbumRotation.length];
+---
+
+<BaseLayout title="Bernardino Cristian — Notes" description="Notes on study, books, and things worth keeping.">
+  <main class="field-home page-shell">
+    <header class="field-masthead">
+      <p class="field-name">Bernardino Cristian <span lang="zh-CN">个人主页</span></p>
+      <p>{profile.introduction.en} <span lang="zh-CN">{profile.introduction.zh}</span></p>
+      <div class="field-links">
+        <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+        <a href={`mailto:${profile.email}`}>Email ↗</a>
+        <a href="/resume">Resume →</a>
+        <span>Instagram — reserved</span>
+        <span>X — reserved</span>
+      </div>
+    </header>
+
+    <section class="field-notes" aria-labelledby="notes-title">
+      <div class="field-heading">
+        <div>
+          <p class="eyebrow">NOTES <span class="translation" lang="zh-CN">笔记</span></p>
+          <h1 id="notes-title">Latest writing</h1>
+        </div>
+        <a href="/notes">All notes <span lang="zh-CN">全部笔记</span> →</a>
+      </div>
+
+      {featuredNote && (() => {
+        const album = albumFor(0);
+        return (
+          <a class="field-feature" href={`/notes/${featuredNote.id}`}>
+            <div class:list={['field-cover', 'field-cover-feature', { 'field-cover-disc': album.treatment === 'disc' }]}>
+              {album.artwork ? <img src={album.artwork} alt={`${album.title} album cover`} /> : <div class="disc-art"><span>YEEZUS</span></div>}
+            </div>
+            <div class="field-post-copy">
+              <p class="field-meta">{formatDate(featuredNote.data.publishedAt)} · {featuredNote.data.tags.join(' / ')}</p>
+              <h2>{featuredNote.data.title}</h2>
+              <p>{featuredNote.data.description}</p>
+              <span class="field-read">Read note →</span>
+            </div>
+          </a>
+        );
+      })()}
+
+      {otherNotes.length > 0 && (
+        <div class="field-grid">
+          {otherNotes.map((note, index) => {
+            const album = albumFor(index + 1);
+            return (
+              <a class="field-card" href={`/notes/${note.id}`}>
+                <div class:list={['field-cover', { 'field-cover-disc': album.treatment === 'disc' }]}>
+                  {album.artwork ? <img src={album.artwork} alt={`${album.title} album cover`} loading="lazy" /> : <div class="disc-art"><span>YEEZUS</span></div>}
+                </div>
+                <p class="field-meta">{formatDate(note.data.publishedAt)} · {note.data.tags.join(' / ')}</p>
+                <h2>{note.data.title}</h2>
+                <p>{note.data.description}</p>
+                <span class="field-read">Read note →</span>
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </section>
+
+    <section class="field-activity" aria-labelledby="activity-title">
+      <div>
+        <p class="eyebrow">WRITING ACTIVITY <span class="translation" lang="zh-CN">写作热力图</span></p>
+        <h2 id="activity-title">{notes.length} notes, one record.</h2>
+      </div>
+      <div class="activity-card">
+        <div class="activity-grid" aria-label="Note count by day over the last 26 weeks">
+          {activityDays.map((day) => <span class={`activity-day level-${day.level}`} title={day.label} aria-label={day.label}></span>)}
+        </div>
+        <div class="activity-legend" aria-hidden="true">
+          <span>Less</span><i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i><span>More</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

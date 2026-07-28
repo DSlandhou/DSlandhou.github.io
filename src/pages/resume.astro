@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout title="Bernardino Cristian — Resume" description="Education, research, and skills.">
+  <main class="resume-letter page-shell">
+    <header class="resume-letter-head">
+      <h1>Bernardino Cristian</h1>
+      <p>Information Management and Information Systems, Zhejiang University.</p>
+      <div>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        <span>Hangzhou, China</span>
+        <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+        <span>Instagram — reserved</span>
+        <span>X — reserved</span>
+      </div>
+    </header>
+
+    <section class="resume-letter-section">
+      <h2>Education</h2>
+      {profile.education.map((item) => (
+        <article class="resume-row"><p>{item.time}</p><h3>{item.title}</h3><p>{item.detail}</p></article>
+      ))}
+    </section>
+
+    <section class="resume-letter-section">
+      <h2>Research and publications</h2>
+      {profile.publications.map((item) => (
+        <article class="resume-entry"><h3>{item.title}</h3><p>{item.meta}</p></article>
+      ))}
+    </section>
+
+    <section class="resume-letter-section">
+      <h2>Academic awards</h2>
+      {profile.awards.map((item) => (
+        <article class="resume-entry"><h3>{item.title}</h3><p>{item.meta}</p></article>
+      ))}
+    </section>
+
+    <section class="resume-letter-section">
+      <h2>Skills</h2>
+      <div class="resume-skills">
+        {profile.skills.map((group) => (
+          <article><h3>{group.area.en}</h3><p>{group.items.join(' · ')}</p></article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => !data.draft);
+  return notes.map((note) => ({ params: { slug: note.id } }));
+}
+
+const slug = Astro.params.slug ?? '';
+const entry = await getEntry('notes', slug);
+
+if (!entry || entry.data.draft) {
+  throw new Error('找不到这篇笔记。');
+}
+
+const { Content } = await render(entry);
+const moreNotes = (await getCollection('notes', ({ data }) => !data.draft))
+  .filter((note) => note.id !== entry.id)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 2);
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+---
+
+<BaseLayout title={`${entry.data.title} — Gatsby`} description={entry.data.description}>
+  <main class="article-shell">
+    <a class="back-link" href="/notes">← 所有笔记</a>
+    <article class="article">
+      <header class="article-header">
+        <p class="eyebrow">{formatDate(entry.data.publishedAt)} · {entry.data.tags.join(' / ')}</p>
+        <h1>{entry.data.title}</h1>
+        <p class="article-description">{entry.data.description}</p>
+      </header>
+      <div class="prose"><Content /></div>
+    </article>
+
+    {moreNotes.length > 0 && (
+      <section class="more-notes">
+        <p class="eyebrow">CONTINUE READING</p>
+        {moreNotes.map((note) => <a href={`/notes/${note.id}`}>{note.data.title} <span>↗</span></a>)}
+      </section>
+    )}
+  </main>
+</BaseLayout>

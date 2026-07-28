@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const tags = [...new Set(notes.flatMap((note) => note.data.tags))];
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
+---
+
+<BaseLayout title="Notes — Bernardino Cristian" description="Course notes, reading notes, and working drafts.">
+  <main class="page-shell notes-page">
+    <header class="page-intro">
+      <p class="eyebrow">THOUGHTS / NOTES / WORKING DRAFTS</p>
+      <h1>Notes are not an archive.<br />They are a record of becoming.</h1>
+      <p>Coursework, reading, projects, and moments worth keeping. <span class="translation" lang="zh-CN">课程、阅读、项目与不想忘掉的时刻。</span></p>
+    </header>
+
+    <div class="tag-row" aria-label="Note tags">
+      <span>ALL / {notes.length}</span>
+      {tags.map((tag) => <span>{tag}</span>)}
+    </div>
+
+    <section class="note-list all-notes" aria-label="All notes">
+      {notes.map((note, index) => (
+        <a class="note-card" href={`/notes/${note.id}`}>
+          <div class="note-number">{String(index + 1).padStart(2, '0')}</div>
+          <div>
+            <p class="note-meta">{formatDate(note.data.publishedAt)} · {note.data.tags.join(' / ')}</p>
+            <h2>{note.data.title}</h2>
+            <p>{note.data.description}</p>
+          </div>
+          <span aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </section>
+  </main>
+</BaseLayout>
