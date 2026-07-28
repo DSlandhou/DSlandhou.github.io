@@ -10,8 +10,11 @@ if errorlevel 1 (
 
 git remote get-url origin >nul 2>nul
 if errorlevel 1 (
-  git remote add origin https://github.com/DSlandhou/DSlandhou.github.io.git
+  git remote add origin ssh://git@ssh.github.com:443/DSlandhou/DSlandhou.github.io.git
 )
+
+git remote set-url origin ssh://git@ssh.github.com:443/DSlandhou/DSlandhou.github.io.git
+git config core.sshCommand "ssh -i %USERPROFILE:\=/%/.ssh/2026blog_github_ed25519 -o IdentitiesOnly=yes -p 443"
 
 git add -A
 git diff --cached --quiet
