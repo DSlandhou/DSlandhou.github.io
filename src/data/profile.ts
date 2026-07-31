@@ -39,9 +39,19 @@ export const profile = {
   ],
   awards: [
     {
-      title: 'Academic award slot — add an achievement here',
-      meta: 'Awarding organisation · Year',
-      zh: '学术奖项预留位',
+      title: 'First Prize — 11th National College Student Statistical Modeling Competition, Zhejiang-Fujian Regional Selection',
+      meta: 'Undergraduate Division · 2025',
+      zh: '统计建模竞赛一等奖',
+    },
+    {
+      title: 'Third Prize — 5th Yangtze River Delta University Mathematical Modeling Competition',
+      meta: 'Undergraduate Division · 2025',
+      zh: '长三角数学建模竞赛三等奖',
+    },
+    {
+      title: 'Successful Participant — Mathematical Contest in Modeling (MCM)',
+      meta: '2026',
+      zh: '美国大学生数学建模竞赛',
     },
   ],
   skills: [
