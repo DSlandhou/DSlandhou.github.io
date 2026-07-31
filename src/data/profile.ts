@@ -5,7 +5,7 @@ export type BilingualText = {
 
 export const profile = {
   name: 'GatsbyH',
-  monogram: 'BC.',
+  monogram: 'GATSBY',
   handle: 'DSlandhou',
   location: 'Hangzhou, China',
   email: 'bernardinocristian718@gmail.com',
