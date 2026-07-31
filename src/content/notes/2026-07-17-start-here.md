@@ -1,15 +1,16 @@
 ---
-title: "从这里开始"
-description: "这不是一份完美计划，而是一份开始行动的承诺。"
+title: "Random thoughts pt0"
+description: "idk"
 publishedAt: 2026-07-17
-tags: ["2026", "自我重建"]
+tags: ["2026", "rebuild"]
 draft: false
 ---
 
-这是一块新的空地。
+THIS IS AN EMPTY LAND.
+like the middle of nowhere.
+Just as Jerome David Salinger said in *The Catcher in the Rye*, "I'm standing at the edge of some crazy cliff."
+i dk how to describe this kind of feeling.just a few Kanye_songs and it really make me peaceful.
+from Chicago to NYC, from NanJing to GRAMMY.
+He is definitely genius.
 
-我不需要先成为一个完美的人，才配开始记录。相反，记录会让我看见自己的轨迹：今天学了什么，明天要做什么，以及那些原本会被遗忘的念头。
 
-2026 年，我会把大目标放在远处，把注意力放回脚下：完成课程、找到实习、准备申请，也把生活过得更有秩序一点。
-
-如果你正在读这段话，说明我已经迈出了第一步。
