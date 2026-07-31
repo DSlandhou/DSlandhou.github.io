@@ -2,7 +2,7 @@
 title: "Random thoughts pt1"
 description: "WAKE UP MR.WEST WAKE UP !!!!"
 publishedAt: 2026-07-17
-tags: ["inmyfeeling"]
+tags: ["in_my_feeling"]
 draft: false
 ---
 
