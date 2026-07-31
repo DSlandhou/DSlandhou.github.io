@@ -3,10 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { profile } from '../data/profile';
 ---
 
-<BaseLayout title="Bernardino Cristian — Resume" description="Education, research, and skills.">
+<BaseLayout title={`${profile.name} — Resume`} description="Education, research, and skills.">
   <main class="resume-letter page-shell">
     <header class="resume-letter-head">
-      <h1>Bernardino Cristian</h1>
+      <h1>{profile.name}</h1>
       <p>Information Management and Information Systems, Zhejiang University.</p>
       <div>
         <a href={`mailto:${profile.email}`}>{profile.email}</a>

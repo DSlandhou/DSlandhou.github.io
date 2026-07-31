@@ -42,11 +42,14 @@ const activityDays = Array.from({ length: 182 }, (_, index) => {
 const albumFor = (index: number) => kanyeAlbumRotation[index % kanyeAlbumRotation.length];
 ---
 
-<BaseLayout title="Bernardino Cristian — Notes" description="Notes on study, books, and things worth keeping.">
+<BaseLayout title={`${profile.name} — Notes`} description="Notes on study, books, and things worth keeping.">
   <main class="field-home page-shell">
     <header class="field-masthead">
-      <p class="field-name">Bernardino Cristian <span lang="zh-CN">个人主页</span></p>
-      <p>{profile.introduction.en} <span lang="zh-CN">{profile.introduction.zh}</span></p>
+      <p class="field-name">{profile.name} <span lang="zh-CN">个人主页</span></p>
+      <div class="field-introduction">
+        <p>{profile.introduction.en}</p>
+        <p lang="zh-CN">{profile.introduction.zh}</p>
+      </div>
       <div class="field-links">
         <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={`mailto:${profile.email}`}>Email ↗</a>

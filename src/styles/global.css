@@ -169,8 +169,10 @@ nav a:hover, nav a.active { color: var(--ink); }
 .field-home { max-width: 1040px; padding-top: 82px; padding-bottom: 120px; }
 .field-masthead { max-width: 700px; border-bottom: 1px solid var(--line); padding-bottom: 31px; }
 .field-name { margin-bottom: 10px; font-size: 1.08rem; font-weight: 800; letter-spacing: -.03em; }
-.field-name span, .field-masthead > p > span { margin-left: .45em; color: var(--muted); font-family: var(--font-cn); font-size: .88em; font-weight: 400; }
-.field-masthead > p:not(.field-name) { max-width: 610px; margin-bottom: 16px; font-size: .96rem; line-height: 1.65; }
+.field-name span { margin-left: .45em; color: var(--muted); font-family: var(--font-cn); font-size: .88em; font-weight: 400; }
+.field-introduction { max-width: 610px; margin-bottom: 16px; }
+.field-introduction p { margin: 0; font-size: .96rem; line-height: 1.65; }
+.field-introduction p + p { margin-top: 3px; color: var(--muted); font-family: var(--font-cn); font-size: .9rem; }
 .field-links { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: .76rem; }
 .field-links a { color: var(--ink); font-weight: 700; }
 .field-links a:hover { text-decoration: underline; text-underline-offset: .18em; }
