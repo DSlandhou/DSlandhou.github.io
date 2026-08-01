@@ -8,7 +8,6 @@ const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
 );
 const recentNotes = notes.slice(0, 10);
-const [featuredNote, ...otherNotes] = recentNotes;
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(date);
@@ -68,27 +67,10 @@ const albumFor = (index: number) => kanyeAlbumRotation[index % kanyeAlbumRotatio
         <a href="/notes">All notes <span lang="zh-CN">全部笔记</span> →</a>
       </div>
 
-      {featuredNote && (() => {
-        const album = albumFor(0);
-        return (
-          <a class="field-feature" href={`/notes/${featuredNote.id}`}>
-            <div class:list={['field-cover', 'field-cover-feature', { 'field-cover-disc': album.treatment === 'disc' }]}>
-              {album.artwork ? <img src={album.artwork} alt={`${album.title} album cover`} /> : <div class="disc-art"><span>YEEZUS</span></div>}
-            </div>
-            <div class="field-post-copy">
-              <p class="field-meta">{formatDate(featuredNote.data.publishedAt)} · {featuredNote.data.tags.join(' / ')}</p>
-              <h2>{featuredNote.data.title}</h2>
-              <p>{featuredNote.data.description}</p>
-              <span class="field-read">Read note →</span>
-            </div>
-          </a>
-        );
-      })()}
-
-      {otherNotes.length > 0 && (
+      {recentNotes.length > 0 && (
         <div class="field-grid">
-          {otherNotes.map((note, index) => {
-            const album = albumFor(index + 1);
+          {recentNotes.map((note, index) => {
+            const album = albumFor(index);
             return (
               <a class="field-card" href={`/notes/${note.id}`}>
                 <div class:list={['field-cover', { 'field-cover-disc': album.treatment === 'disc' }]}>
