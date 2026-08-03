@@ -14,13 +14,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="simple-note-box">
         <p class="eyebrow">THREE STEPS <span class="translation" lang="zh-CN">只要三步</span></p>
         <ol>
-          <li>Fill in a title, tags, and the body.</li>
+          <li>Fill in one title, then an English body and an optional Chinese translation.</li>
           <li>Select “Download note file”.</li>
           <li>Drag the downloaded file into <code>src/content/notes</code>, then double click the file beginning with 3.</li>
         </ol>
       </div>
 
       <form id="note-form">
+        <p class="writer-language-heading">ENGLISH BODY <span>original note</span></p>
         <label>
           <span>Title <small lang="zh-CN">标题</small></span>
           <input id="note-title" type="text" maxlength="120" placeholder="For example: I finally started today" required />
@@ -31,7 +32,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </label>
         <label>
           <span>Body <small lang="zh-CN">直接正常写字即可</small></span>
-          <textarea id="note-body" rows="18" maxlength="50000" placeholder="Write what is on your mind..." required></textarea>
+          <textarea id="note-body-en" rows="16" maxlength="50000" placeholder="Write the English version here..." required></textarea>
+        </label>
+        <p class="writer-language-heading">CHINESE TRANSLATION <span lang="zh-CN">自己写的中文译文，可选</span></p>
+        <label>
+          <span>Chinese body <small lang="zh-CN">中文正文</small></span>
+          <textarea id="note-body-zh" rows="16" maxlength="50000" placeholder="在这里写你自己的中文译文（可不填）..."></textarea>
         </label>
         <div class="writer-footer">
           <p id="draft-status">This draft stays only in this browser.</p>
@@ -43,63 +49,76 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </main>
 
   <script>
-    const storageKey = '2026blog-easy-draft-v1';
+    const storageKey = '2026blog-bilingual-draft-v2';
+    const legacyStorageKey = '2026blog-easy-draft-v1';
     const form = document.querySelector<HTMLFormElement>('#note-form');
     const titleInput = document.querySelector<HTMLInputElement>('#note-title');
     const tagsInput = document.querySelector<HTMLInputElement>('#note-tags');
-    const bodyInput = document.querySelector<HTMLTextAreaElement>('#note-body');
+    const englishBodyInput = document.querySelector<HTMLTextAreaElement>('#note-body-en');
+    const chineseBodyInput = document.querySelector<HTMLTextAreaElement>('#note-body-zh');
     const draftStatus = document.querySelector<HTMLParagraphElement>('#draft-status');
     const formStatus = document.querySelector<HTMLParagraphElement>('#form-status');
 
-    if (!form || !titleInput || !tagsInput || !bodyInput || !draftStatus || !formStatus) {
+    if (!form || !titleInput || !tagsInput || !englishBodyInput || !chineseBodyInput || !draftStatus || !formStatus) {
       throw new Error('The writing page did not load correctly. Please refresh once.');
     }
 
     const saveDraft = () => {
-      localStorage.setItem(storageKey, JSON.stringify({ title: titleInput.value, tags: tagsInput.value, body: bodyInput.value }));
+      localStorage.setItem(storageKey, JSON.stringify({
+        title: titleInput.value,
+        tags: tagsInput.value,
+        englishBody: englishBodyInput.value,
+        chineseBody: chineseBodyInput.value,
+      }));
       draftStatus.textContent = 'Draft saved only in this browser.';
     };
 
     try {
-      const savedDraft = localStorage.getItem(storageKey);
+      const savedDraft = localStorage.getItem(storageKey) ?? localStorage.getItem(legacyStorageKey);
       if (savedDraft) {
-        const draft = JSON.parse(savedDraft) as { title?: string; tags?: string; body?: string };
+        const draft = JSON.parse(savedDraft) as { title?: string; tags?: string; body?: string; englishBody?: string; chineseBody?: string };
         titleInput.value = draft.title ?? '';
         tagsInput.value = draft.tags ?? '';
-        bodyInput.value = draft.body ?? '';
+        englishBodyInput.value = draft.englishBody ?? draft.body ?? '';
+        chineseBodyInput.value = draft.chineseBody ?? '';
         draftStatus.textContent = 'An unfinished draft was restored on this computer.';
       }
     } catch {
       draftStatus.textContent = 'The local draft could not be read, but downloading a note will still work.';
     }
 
-    [titleInput, tagsInput, bodyInput].forEach((field) => field.addEventListener('input', saveDraft));
+    [titleInput, tagsInput, englishBodyInput, chineseBodyInput].forEach((field) => field.addEventListener('input', saveDraft));
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const title = titleInput.value.trim();
-      const body = bodyInput.value.trim();
+      const englishBody = englishBodyInput.value.trim();
+      const chineseBody = chineseBodyInput.value.trim();
       const tags = tagsInput.value.split(/[,，]/).map((tag) => tag.trim()).filter(Boolean).slice(0, 8);
 
-      if (title.length < 2 || !body) {
-        formStatus.textContent = 'Please add a title with at least two characters and some body text.';
+      if (title.length < 2 || !englishBody) {
+        formStatus.textContent = 'Please add a title with at least two characters and an English body.';
         return;
       }
 
       const now = new Date();
       const date = now.toISOString().slice(0, 10);
       const time = [now.getHours(), now.getMinutes(), now.getSeconds()].map((value) => String(value).padStart(2, '0')).join('');
-      const description = body.replace(/[#>*_`\[\]-]/g, '').replace(/\s+/g, ' ').slice(0, 120) || title;
+      const description = englishBody.replace(/[#>*_`\[\]-]/g, '').replace(/\s+/g, ' ').slice(0, 120) || title;
+      const translationLines = chineseBody
+        ? ['translation: |-', ...chineseBody.split(/\r?\n/).map((line) => `  ${line}`)]
+        : [];
       const markdown = [
         '---',
         `title: ${JSON.stringify(title)}`,
         `description: ${JSON.stringify(description)}`,
         `publishedAt: ${date}`,
         `tags: ${JSON.stringify(tags)}`,
+        ...translationLines,
         'draft: false',
         '---',
         '',
-        body,
+        englishBody,
         '',
       ].join('\n');
       const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
@@ -109,9 +128,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       link.click();
       URL.revokeObjectURL(link.href);
       localStorage.removeItem(storageKey);
+      localStorage.removeItem(legacyStorageKey);
       form.reset();
       draftStatus.textContent = 'Draft cleared.';
-      formStatus.textContent = 'Download complete. Drag the .md file into src/content/notes, then double click the file beginning with 3 to publish.';
+      formStatus.textContent = 'Download complete. Your English note and Chinese translation are saved in one file. Drag it into src/content/notes, then double click the file beginning with 3 to publish.';
     });
   </script>
 </BaseLayout>

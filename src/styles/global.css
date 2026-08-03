@@ -123,7 +123,13 @@ nav a:hover, nav a.active { color: var(--ink); }
 .article-header { border-bottom: 1px solid var(--line); margin-bottom: 38px; padding-bottom: 31px; }
 .article-header h1 { margin-bottom: 18px; font-family: Georgia, "Times New Roman", var(--font-cn); font-size: clamp(2rem, 4.7vw, 3.65rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.08; }
 .article-description { max-width: 700px; margin: 0; color: #3f3e3a; font-family: Georgia, "Times New Roman", var(--font-cn); font-size: 1.08rem; line-height: 1.7; }
+.language-switch { display: flex; align-items: center; gap: 6px; margin-top: 22px; }
+.language-switch > span { margin-right: 4px; color: var(--muted); font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.language-switch button { border: 1px solid var(--line); border-radius: 0; background: transparent; padding: 5px 9px; color: var(--muted); cursor: pointer; font: 800 .7rem/1 var(--font-ui); letter-spacing: .04em; }
+.language-switch button:hover { border-color: var(--ink); color: var(--ink); }
+.language-switch button.is-active { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .prose { max-width: 720px; color: #292824; font-family: Georgia, "Times New Roman", var(--font-cn); font-size: 1.1rem; line-height: 1.9; text-align: justify; text-justify: inter-word; }
+.note-language-zh { font-family: var(--font-cn); }
 .prose p { margin-bottom: 1.45em; }
 .prose h2, .prose h3 { margin: 2.25em 0 .75em; color: var(--ink); font-family: Georgia, "Times New Roman", var(--font-cn); font-weight: 700; letter-spacing: -.025em; line-height: 1.15; }
 .prose h2 { font-size: 1.7rem; }
@@ -153,6 +159,9 @@ nav a:hover, nav a.active { color: var(--ink); }
 .simple-note-box li + li { margin-top: 6px; }
 .simple-note-box code, .writer code { background: var(--surface-deep); padding: .15em .3em; color: var(--ink); font-family: ui-monospace, monospace; }
 .writer label { display: block; margin-bottom: 21px; }
+.writer-language-heading { margin: 28px 0 10px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink); font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
+.writer-language-heading:first-of-type { margin-top: 0; }
+.writer-language-heading span { margin-left: .5em; color: var(--muted); font-family: var(--font-cn); font-size: .92em; font-weight: 400; letter-spacing: 0; }
 .writer label > span { display: block; margin-bottom: 8px; font-size: .82rem; font-weight: 800; }
 .writer small { color: var(--muted); font-family: var(--font-cn); font-size: .72rem; font-weight: 400; }
 .writer input, .writer textarea { width: 100%; border: 1px solid #aaa8a1; border-radius: 0; background: #fbfaf7; padding: 12px; color: var(--ink); font: 400 1rem/1.5 var(--font-ui); }
