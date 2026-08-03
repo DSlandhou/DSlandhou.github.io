@@ -12,5 +12,3 @@ Just as Jerome David Salinger said in *The Catcher in the Rye*, "I'm standing at
 i dk how to describe this kind of feeling.just a few Kanye_songs and it really make me peaceful.
 from Chicago to NYC, from NanJing to GRAMMY.
 He is definitely genius.
-
-
