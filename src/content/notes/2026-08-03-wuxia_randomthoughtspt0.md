@@ -1,6 +1,6 @@
 ---
 title: "Rōnin, Samurai, Wuxia, Cowboy, Bounty Hunter — Part 0"
-description: "Three is a beautiful number. Like The Godfather trilogy. Like the Dollars Trilogy — I just rewatched Il buono, il brutto"
+description: "Three is a beautiful number"
 publishedAt: 2026-08-03
 tags: ["3 is beautiful"]
 translation: |-
