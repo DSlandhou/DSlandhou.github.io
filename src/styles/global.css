@@ -105,6 +105,8 @@ nav a:hover, nav a.active { color: var(--ink); }
 
 /* Notes and article pages */
 .notes-page, .now-page, .write-page { padding-top: 94px; padding-bottom: 125px; }
+.notes-library-page { max-width: 1080px; padding-top: 46px; }
+.notes-library-page .notes-tag-row { margin-bottom: 20px; }
 .page-intro { max-width: 880px; margin-bottom: 61px; }
 .page-intro h1 { margin-bottom: 22px; font-size: clamp(3rem, 7vw, 6.4rem); font-weight: 900; line-height: .92; }
 .page-intro > p:last-child { max-width: 640px; color: var(--muted); font-family: var(--font-cn); font-size: 1rem; }
@@ -117,6 +119,10 @@ nav a:hover, nav a.active { color: var(--ink); }
 .note-card p { margin: 0; color: var(--muted); font-family: var(--font-cn); }
 .all-notes .note-card { grid-template-columns: 52px 1fr auto; }
 .note-number { color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .08em; }
+.notes-pagination { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 34px; }
+.notes-pagination a { min-width: 34px; border: 1px solid var(--line); padding: 6px 9px; color: var(--muted); font-size: .75rem; font-weight: 700; text-align: center; }
+.notes-pagination a:hover { border-color: var(--ink); color: var(--ink); }
+.notes-pagination a.active { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .article-shell { max-width: 960px; margin: 0 auto; padding: 48px 32px 125px; }
 .back-link { display: inline-block; margin-bottom: 76px; border-bottom: 1px solid var(--ink); padding-bottom: 2px; font-size: .83rem; font-weight: 800; }
 .article { max-width: 760px; }
@@ -251,6 +257,7 @@ nav a:hover, nav a.active { color: var(--ink); }
   .album-caption { display: none; }
   .note-arrow { display: none; }
   .resume-page, .notes-page, .now-page, .write-page { padding-top: 65px; padding-bottom: 78px; }
+  .notes-library-page { padding-top: 34px; }
   .resume-header { margin-bottom: 72px; }
   .resume-section { grid-template-columns: 1fr; gap: 22px; padding: 26px 0 37px; }
   .timeline-item { grid-template-columns: 1fr; gap: 5px; }

@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  notes: CollectionEntry<'notes'>[];
+  tags: string[];
+  totalNotes: number;
+  currentPage: number;
+  totalPages: number;
+  startIndex: number;
+}
+
+const { notes, tags, totalNotes, currentPage, totalPages, startIndex } = Astro.props;
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
+const pageHref = (page: number) => page === 1 ? '/notes/' : `/notes/page/${page}/`;
+---
+
+<div class="tag-row notes-tag-row" aria-label="Note tags">
+  <span>ALL / {totalNotes}</span>
+  {tags.map((tag) => <span>{tag}</span>)}
+</div>
+
+<section class="note-list all-notes" aria-label="All notes">
+  {notes.map((note, index) => (
+    <a class="note-card" href={`/notes/${note.id}`}>
+      <div class="note-number">{String(startIndex + index + 1).padStart(2, '0')}</div>
+      <div>
+        <p class="note-meta">{formatDate(note.data.publishedAt)} · {note.data.tags.join(' / ')}</p>
+        <h2>{note.data.title}</h2>
+        <p>{note.data.description}</p>
+      </div>
+      <span aria-hidden="true">→</span>
+    </a>
+  ))}
+</section>
+
+{totalPages > 1 && (
+  <nav class="notes-pagination" aria-label="Notes pages">
+    {currentPage > 1 && <a href={pageHref(currentPage - 1)}>Previous</a>}
+    {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+      <a class:list={{ active: page === currentPage }} aria-current={page === currentPage ? 'page' : undefined} href={pageHref(page)}>{page}</a>
+    ))}
+    {currentPage < totalPages && <a href={pageHref(currentPage + 1)}>Next</a>}
+  </nav>
+)}

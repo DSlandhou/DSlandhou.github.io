@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import NotesLibrary from '../../../components/NotesLibrary.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const pageSize = 10;
+
+export async function getStaticPaths() {
+  const pageSize = 10;
+  const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+  );
+  const totalPages = Math.ceil(notes.length / pageSize);
+  return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, index) => ({
+    params: { page: String(index + 2) },
+  }));
+}
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const tags = [...new Set(notes.flatMap((note) => note.data.tags))];
+const currentPage = Number(Astro.params.page);
+const totalPages = Math.max(1, Math.ceil(notes.length / pageSize));
+const pageNotes = notes.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+---
+
+<BaseLayout title={`Notes - Page ${currentPage} - GatsbyH`} description="Course notes, reading notes, and working drafts.">
+  <main class="page-shell notes-page notes-library-page">
+    <NotesLibrary notes={pageNotes} tags={tags} totalNotes={notes.length} currentPage={currentPage} totalPages={totalPages} startIndex={(currentPage - 1) * pageSize} />
+  </main>
+</BaseLayout>
