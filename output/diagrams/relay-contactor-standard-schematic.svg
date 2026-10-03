@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+  <defs>
+    <style>
+      .wire{fill:none;stroke:#111;stroke-width:2.6;stroke-linecap:square;stroke-linejoin:miter}
+      .thin{fill:none;stroke:#111;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}
+      .dash{fill:none;stroke:#555;stroke-width:1.4;stroke-dasharray:7 5}
+      .sym{fill:#fff;stroke:#111;stroke-width:2}
+      .term{fill:#fff;stroke:#111;stroke-width:2}
+      .node{fill:#111}
+      .txt{font:16px Arial,Helvetica,sans-serif;fill:#111}
+      .small{font:13px Arial,Helvetica,sans-serif;fill:#111}
+      .tiny{font:11px Arial,Helvetica,sans-serif;fill:#111}
+      .head{font:bold 16px Arial,Helvetica,sans-serif;fill:#111;letter-spacing:1px}
+      .mono{font:14px 'Courier New',monospace;fill:#111}
+    </style>
+  </defs>
+
+  <rect x="20" y="20" width="1760" height="1060" fill="#fff" stroke="#111" stroke-width="2"/>
+  <path class="thin" d="M20 70 H1780 M20 570 H1780"/>
+  <text class="head" x="50" y="55">3 PHASE POWER - 115/200 VAC, 400 Hz, 3Ø 5W</text>
+  <text class="head" x="50" y="555">CONTROL POWER - 28 VDC</text>
+
+  <!-- Incoming terminal block -->
+  <text class="txt" x="86" y="128">TB1</text>
+  <rect class="sym" x="85" y="145" width="75" height="280"/>
+  <text class="small" x="100" y="186">L1</text><text class="small" x="100" y="236">L2</text><text class="small" x="100" y="286">L3</text><text class="small" x="106" y="346">N</text><text class="small" x="98" y="396">PE</text>
+  <circle class="term" cx="160" cy="180" r="5"/><circle class="term" cx="160" cy="230" r="5"/><circle class="term" cx="160" cy="280" r="5"/><circle class="term" cx="160" cy="340" r="5"/><circle class="term" cx="160" cy="390" r="5"/>
+
+  <!-- S0 three-pole switch -->
+  <text class="txt" x="306" y="128" text-anchor="middle">S0</text>
+  <text class="small" x="306" y="147" text-anchor="middle">MAIN PWR</text>
+  <path class="wire" d="M165 180 H270 M342 180 H430"/><circle class="term" cx="270" cy="180" r="4"/><circle class="term" cx="342" cy="180" r="4"/><path class="wire" d="M270 180 L334 148"/>
+  <path class="wire" d="M165 230 H270 M342 230 H430"/><circle class="term" cx="270" cy="230" r="4"/><circle class="term" cx="342" cy="230" r="4"/><path class="wire" d="M270 230 L334 198"/>
+  <path class="wire" d="M165 280 H270 M342 280 H430"/><circle class="term" cx="270" cy="280" r="4"/><circle class="term" cx="342" cy="280" r="4"/><path class="wire" d="M270 280 L334 248"/>
+  <path class="dash" d="M306 180 V280"/>
+
+  <!-- CB1 3 pole -->
+  <rect class="sym" x="490" y="150" width="118" height="160"/>
+  <text class="txt" x="549" y="127" text-anchor="middle">CB1</text>
+  <text class="small" x="549" y="332" text-anchor="middle">3P CIRCUIT BREAKER</text>
+  <path class="wire" d="M430 180 H515 M583 180 H670"/><path class="wire" d="M430 230 H515 M583 230 H670"/><path class="wire" d="M430 280 H515 M583 280 H670"/>
+  <rect class="sym" x="515" y="170" width="68" height="20"/><rect class="sym" x="515" y="220" width="68" height="20"/><rect class="sym" x="515" y="270" width="68" height="20"/>
+  <path class="dash" d="M549 180 V280"/>
+
+  <!-- KM1 contacts -->
+  <text class="txt" x="795" y="127" text-anchor="middle">KM1</text>
+  <text class="small" x="795" y="147" text-anchor="middle">MAIN CONTACTS</text>
+  <path class="wire" d="M670 180 H760 M842 180 H960"/><circle class="term" cx="760" cy="180" r="4"/><circle class="term" cx="842" cy="180" r="4"/><path class="wire" d="M760 180 L834 143"/>
+  <path class="wire" d="M670 230 H760 M842 230 H960"/><circle class="term" cx="760" cy="230" r="4"/><circle class="term" cx="842" cy="230" r="4"/><path class="wire" d="M760 230 L834 193"/>
+  <path class="wire" d="M670 280 H760 M842 280 H960"/><circle class="term" cx="760" cy="280" r="4"/><circle class="term" cx="842" cy="280" r="4"/><path class="wire" d="M760 280 L834 243"/>
+  <path class="dash" d="M801 180 V280"/>
+  <text class="tiny" x="752" y="168">1/L1</text><text class="tiny" x="846" y="168">2/T1</text>
+  <text class="tiny" x="752" y="218">3/L2</text><text class="tiny" x="846" y="218">4/T2</text>
+  <text class="tiny" x="752" y="268">5/L3</text><text class="tiny" x="846" y="268">6/T3</text>
+
+  <!-- Load terminal block and M1 -->
+  <text class="txt" x="1030" y="128">TB2</text>
+  <rect class="sym" x="1025" y="150" width="60" height="160"/>
+  <circle class="term" cx="1025" cy="180" r="5"/><circle class="term" cx="1025" cy="230" r="5"/><circle class="term" cx="1025" cy="280" r="5"/>
+  <path class="wire" d="M960 180 H1025 M960 230 H1025 M960 280 H1025"/>
+  <rect class="sym" x="1220" y="145" width="220" height="180"/>
+  <text class="txt" x="1330" y="195" text-anchor="middle">M1</text>
+  <text class="small" x="1330" y="219" text-anchor="middle">3 PHASE LOAD</text>
+  <text class="small" x="1330" y="241" text-anchor="middle">MOTOR / HEATER</text>
+  <path class="wire" d="M1085 180 H1220 M1085 230 H1220 M1085 280 H1220"/>
+
+  <!-- N and PE direct -->
+  <path class="wire" d="M165 340 H1170 V300 H1220"/>
+  <text class="tiny" x="1095" y="329">N</text>
+  <path class="wire" d="M165 390 H1140 V350 H1220"/>
+  <text class="tiny" x="1095" y="379">PE</text>
+  <path class="thin" d="M1140 390 V412 M1125 412 H1155 M1129 419 H1151 M1134 426 H1146"/>
+
+  <!-- PS1 -->
+  <path class="wire" d="M430 180 V455 H540"/><path class="wire" d="M430 340 V495 H540"/>
+  <circle class="node" cx="430" cy="180" r="4"/><circle class="node" cx="430" cy="340" r="4"/>
+  <rect class="sym" x="540" y="430" width="180" height="90"/>
+  <text class="txt" x="630" y="463" text-anchor="middle">PS1</text>
+  <text class="small" x="630" y="488" text-anchor="middle">AC / 28 VDC</text>
+  <text class="tiny" x="630" y="508" text-anchor="middle">CONTROL POWER SUPPLY</text>
+
+  <!-- DC bus and CB2 -->
+  <path class="wire" d="M720 455 H840 V645 H915"/>
+  <path class="wire" d="M720 495 H840 V1000 H1650"/>
+  <text class="small" x="755" y="447">+28V</text><text class="small" x="755" y="518">0V</text>
+  <text class="txt" x="975" y="615" text-anchor="middle">CB2</text>
+  <text class="small" x="975" y="635" text-anchor="middle">1P / 2 A</text>
+  <path class="wire" d="M915 645 H945 M1005 645 H1660"/>
+  <rect class="sym" x="945" y="634" width="60" height="22"/>
+  <path class="wire" d="M1660 645 V850"/>
+  <path class="wire" d="M1660 850 H110 V1000"/>
+  <text class="tiny" x="1585" y="630">+28V CONTROL BUS</text>
+  <text class="tiny" x="1585" y="990">0V RETURN BUS</text>
+
+  <!-- K1 relay branch -->
+  <text class="small" x="135" y="720">K1 RELAY CONTROL</text>
+  <path class="wire" d="M300 850 V780 H360"/>
+  <text class="txt" x="415" y="752" text-anchor="middle">S1</text>
+  <circle class="term" cx="360" cy="780" r="4"/><circle class="term" cx="470" cy="780" r="4"/><path class="wire" d="M360 780 L462 730"/>
+  <path class="wire" d="M470 780 H560"/>
+  <rect class="sym" x="560" y="748" width="150" height="64"/>
+  <text class="txt" x="635" y="777" text-anchor="middle">K1</text>
+  <text class="small" x="635" y="798" text-anchor="middle">RELAY COIL</text>
+  <text class="tiny" x="570" y="738">A1</text><text class="tiny" x="695" y="738">A2</text>
+  <path class="wire" d="M710 780 H800 V1000"/>
+
+  <!-- K1 NO contact / H1 branch -->
+  <text class="small" x="135" y="895">K1 AUXILIARY OUTPUT</text>
+  <path class="wire" d="M300 850 V930 H360"/>
+  <text class="tiny" x="400" y="916" text-anchor="middle">K1 NO 13-14</text>
+  <circle class="term" cx="360" cy="930" r="4"/><circle class="term" cx="470" cy="930" r="4"/><path class="wire" d="M360 930 L462 880"/>
+  <path class="wire" d="M470 930 H540"/>
+  <circle class="sym" cx="580" cy="930" r="34"/><path class="thin" d="M566 930 H594 M580 916 V944"/>
+  <text class="txt" x="580" y="982" text-anchor="middle">H1</text>
+  <text class="tiny" x="580" y="998" text-anchor="middle">INDICATION / AUX LOAD</text>
+  <path class="wire" d="M614 930 H680 V1000"/>
+  <path class="dash" d="M635 812 V855 H414 V880"/>
+
+  <!-- KM1 contactor branch -->
+  <text class="small" x="1030" y="720">KM1 CONTACTOR CONTROL</text>
+  <path class="wire" d="M1230 850 V780 H1290"/>
+  <text class="txt" x="1345" y="752" text-anchor="middle">S2</text>
+  <circle class="term" cx="1290" cy="780" r="4"/><circle class="term" cx="1400" cy="780" r="4"/><path class="wire" d="M1290 780 L1392 730"/>
+  <path class="wire" d="M1400 780 H1490"/>
+  <rect class="sym" x="1490" y="748" width="150" height="64"/>
+  <text class="txt" x="1565" y="777" text-anchor="middle">KM1</text>
+  <text class="small" x="1565" y="798" text-anchor="middle">COIL 28VDC</text>
+  <text class="tiny" x="1500" y="738">A1</text><text class="tiny" x="1625" y="738">A2</text>
+  <path class="wire" d="M1640 780 H1720 V1000"/>
+  <path class="dash" d="M1565 748 V690 H801 V300"/>
+
+  <!-- Bottom drawing data, no drawing name -->
+  <path class="thin" d="M1370 1015 H1780 M1370 1050 H1780 M1510 1015 V1080 M1640 1015 V1080"/>
+  <text class="tiny" x="1380" y="1038">DWG NO.</text><text class="mono" x="1380" y="1068">CONCEPT-001</text>
+  <text class="tiny" x="1520" y="1038">REV</text><text class="mono" x="1520" y="1068">A</text>
+  <text class="tiny" x="1650" y="1038">SHEET</text><text class="mono" x="1650" y="1068">1 OF 1</text>
+  <text class="tiny" x="50" y="1042">NOTE: CONCEPTUAL SCHEMATIC ONLY. VERIFY VOLTAGE, CB RATING, WIRE SIZE AND EWIS REQUIREMENTS AGAINST APPROVED AIRCRAFT DATA.</text>
+</svg>

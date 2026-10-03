@@ -1,0 +1,107 @@
+* AVIATION RELAY / CONTACTOR CHANGEOVER-CONTACT MAINTENANCE TRAINER
+* Multisim-compatible SPICE transient simulation netlist
+* AC input: L, N, PE. DC input: DC+, DC-.
+* KA: four SPDT main contact groups a-d, each 1-2 NO / 2-3 NC, 10 A rated.
+* KM: three SPDT main contact groups a-c, each 1-2 NO / 2-3 NC, 25 A rated.
+*
+* Simulation schedule:
+*   S0 closes at 1 ms; Q1 and Q2 are closed.
+*   S1 closes from 0.8 s to 3.2 s (KA operates; every KA contact transfers 3 to 1).
+*   S2 closes from 1.6 s to 3.2 s (KM operates; every KM contact transfers 3 to 1).
+* To perform manual tests in Multisim, replace V_S1CTL and V_S2CTL PULSE sources with DC 0 or DC 5.
+
+* INPUT SUPPLIES
+V_AC          L       N       SIN(0 162.63 400)
+V_DC          DCPLUS  DCNEG   DC 28
+R_N_REF       N       0       1m
+R_PE_REF      PE      0       1m
+
+* INPUT-POWER INDICATORS: ENERGIZED WHEN THE TRAINER IS CONNECTED, INDEPENDENT OF S0
+R_HL_AC1      L       N       5k
+R_HL_DC1      DCPLUS  DCNEG   2.8k
+
+* CONTROL SIGNALS FOR S0, Q1, Q2, S1 AND S2
+V_S0CTL       S0CTL   0       PULSE(0 5 1m 1u 1u 10 20)
+V_Q1CTL       Q1CTL   0       DC 5
+V_Q2CTL       Q2CTL   0       DC 5
+V_S1CTL       S1CTL   0       PULSE(0 5 0.8 1u 1u 2.4 6)
+V_S2CTL       S2CTL   0       PULSE(0 5 1.6 1u 1u 1.6 6)
+
+* S0 - DPST MASTER SWITCH: AC POLE AND DC POLE OPERATE TOGETHER
+S_S0_AC       L       L_S0    S0CTL   0       SW_ON
+S_S0_DC       DCPLUS  DC_S0   S0CTL   0       SW_ON
+
+* BUS-POWER INDICATORS: ENERGIZED ONLY WHEN S0 IS CLOSED
+R_HL_AC       L_S0    N       5k
+R_HL_DC       DC_S0   DCNEG   2.8k
+
+* Q1 - AC MAIN-CIRCUIT BREAKER; Q2 - DC CONTROL-CIRCUIT BREAKER
+S_Q1          L_S0    AC_BUS  Q1CTL   0       SW_ON
+S_Q2          DC_S0   DC_BUS  Q2CTL   0       SW_ON
+
+* KA CONTROL: S1, 28 VDC COIL AND BLUE OPERATED LAMP (PARALLEL)
+S_S1          DC_BUS  KA_COIL S1CTL   0       SW_ON
+R_KA_COIL     KA_COIL DCNEG   560
+R_HL_KA       KA_COIL DCNEG   2.8k
+
+* KA MAIN CONTACTS a-d: SPDT, COMMON = TERMINAL 2
+* De-energized: 2-3 closed. Energized: 1-2 closed.
+R_KA_A_COM    AC_BUS  KA_A_2  1m
+S_KA_A_NO     KA_A_2  KA_A_1  KA_COIL DCNEG SW_ON
+E_KA_A_NCCTL  KA_A_NC_CTL 0 KA_COIL DCNEG -1
+S_KA_A_NC     KA_A_2  KA_A_3  KA_A_NC_CTL 0 SW_NC
+R_KA_B_COM    AC_BUS  KA_B_2  1m
+S_KA_B_NO     KA_B_2  KA_B_1  KA_COIL DCNEG SW_ON
+E_KA_B_NCCTL  KA_B_NC_CTL 0 KA_COIL DCNEG -1
+S_KA_B_NC     KA_B_2  KA_B_3  KA_B_NC_CTL 0 SW_NC
+R_KA_C_COM    AC_BUS  KA_C_2  1m
+S_KA_C_NO     KA_C_2  KA_C_1  KA_COIL DCNEG SW_ON
+E_KA_C_NCCTL  KA_C_NC_CTL 0 KA_COIL DCNEG -1
+S_KA_C_NC     KA_C_2  KA_C_3  KA_C_NC_CTL 0 SW_NC
+R_KA_D_COM    AC_BUS  KA_D_2  1m
+S_KA_D_NO     KA_D_2  KA_D_1  KA_COIL DCNEG SW_ON
+E_KA_D_NCCTL  KA_D_NC_CTL 0 KA_COIL DCNEG -1
+S_KA_D_NC     KA_D_2  KA_D_3  KA_D_NC_CTL 0 SW_NC
+R_LOAD_KA_A_NO KA_A_1 N 2k
+R_LOAD_KA_A_NC KA_A_3 N 2k
+R_LOAD_KA_B_NO KA_B_1 N 2k
+R_LOAD_KA_B_NC KA_B_3 N 2k
+R_LOAD_KA_C_NO KA_C_1 N 2k
+R_LOAD_KA_C_NC KA_C_3 N 2k
+R_LOAD_KA_D_NO KA_D_1 N 2k
+R_LOAD_KA_D_NC KA_D_3 N 2k
+
+* KM CONTROL: S2, 28 VDC COIL AND BLUE OPERATED LAMP (PARALLEL)
+S_S2          DC_BUS  KM_COIL S2CTL   0       SW_ON
+R_KM_COIL     KM_COIL DCNEG   280
+R_HL_KM       KM_COIL DCNEG   2.8k
+
+* KM MAIN CONTACTS a-c: SPDT, COMMON = TERMINAL 2
+* De-energized: 2-3 closed. Energized: 1-2 closed.
+R_KM_A_COM    AC_BUS  KM_A_2  1m
+S_KM_A_NO     KM_A_2  KM_A_1  KM_COIL DCNEG SW_ON
+E_KM_A_NCCTL  KM_A_NC_CTL 0 KM_COIL DCNEG -1
+S_KM_A_NC     KM_A_2  KM_A_3  KM_A_NC_CTL 0 SW_NC
+R_KM_B_COM    AC_BUS  KM_B_2  1m
+S_KM_B_NO     KM_B_2  KM_B_1  KM_COIL DCNEG SW_ON
+E_KM_B_NCCTL  KM_B_NC_CTL 0 KM_COIL DCNEG -1
+S_KM_B_NC     KM_B_2  KM_B_3  KM_B_NC_CTL 0 SW_NC
+R_KM_C_COM    AC_BUS  KM_C_2  1m
+S_KM_C_NO     KM_C_2  KM_C_1  KM_COIL DCNEG SW_ON
+E_KM_C_NCCTL  KM_C_NC_CTL 0 KM_COIL DCNEG -1
+S_KM_C_NC     KM_C_2  KM_C_3  KM_C_NC_CTL 0 SW_NC
+R_LOAD_KM_A_NO KM_A_1 N 1k
+R_LOAD_KM_A_NC KM_A_3 N 1k
+R_LOAD_KM_B_NO KM_B_1 N 1k
+R_LOAD_KM_B_NC KM_B_3 N 1k
+R_LOAD_KM_C_NO KM_C_1 N 1k
+R_LOAD_KM_C_NC KM_C_3 N 1k
+
+* IDEALIZED CONTACT MODELS
+.model SW_ON  SW(Ron=0.05 Roff=1G Vt=15 Vh=0.1)
+* The NC switch is ON at 0 V coil drive and OFF when the coil is energized.
+.model SW_NC  SW(Ron=0.05 Roff=1G Vt=-1 Vh=0.1)
+
+* ANALYSIS
+.tran 50u 4
+.end

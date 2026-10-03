@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1060" viewBox="0 0 1600 1060">
+  <defs>
+    <style>
+      .bg { fill:#ffffff; }
+      .title { font:700 31px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif; fill:#12355b; }
+      .subtitle { font:16px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif; fill:#526577; }
+      .section { font:700 19px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif; fill:#12355b; }
+      .label { font:15px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif; fill:#1d2a35; }
+      .small { font:13px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif; fill:#40515f; }
+      .tiny { font:12px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif; fill:#40515f; }
+      .wire { fill:none; stroke:#263746; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .wire-thin { fill:none; stroke:#263746; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .phase1 { stroke:#bf3d3d; } .phase2 { stroke:#d18a1d; } .phase3 { stroke:#3565b0; }
+      .neutral { stroke:#5d6670; } .earth { stroke:#31916b; }
+      .dcplus { stroke:#b3364c; } .dcminus { stroke:#3c6eaa; }
+      .box { fill:#f8fbfd; stroke:#6d879e; stroke-width:2; rx:8; }
+      .box-blue { fill:#eaf3f9; stroke:#39749d; stroke-width:2; rx:8; }
+      .note { fill:#fff9e5; stroke:#cba950; stroke-width:1.5; rx:7; }
+      .contact { fill:#ffffff; stroke:#263746; stroke-width:2.5; }
+      .node { fill:#263746; }
+      .dash { fill:none; stroke:#7590a5; stroke-width:1.6; stroke-dasharray:7 6; }
+      .link { fill:none; stroke:#8b5a8d; stroke-width:1.7; stroke-dasharray:5 5; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 z" fill="#526577"/></marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1060"/>
+  <text class="title" x="800" y="52" text-anchor="middle">航空继电器与接触器控制电路（概念原理图）</text>
+  <text class="subtitle" x="800" y="80" text-anchor="middle">三相五线主供电 + 28 V DC 控制；继电器 K1 与接触器 KM 各由独立开关控制</text>
+
+  <rect x="36" y="105" width="1528" height="392" rx="12" fill="#fbfdff" stroke="#c6d6e4" stroke-width="1.5"/>
+  <text class="section" x="60" y="137">A. 三相五线主回路</text>
+  <text class="small" x="1400" y="137" text-anchor="end">L1 / L2 / L3 经总开关、跳开关和接触器；N、PE 不经主触点</text>
+
+  <!-- source -->
+  <rect class="box-blue" x="60" y="165" width="105" height="230"/>
+  <text class="label" x="112" y="195" text-anchor="middle">三相五线</text>
+  <text class="label" x="112" y="217" text-anchor="middle">电源输入</text>
+  <text class="small" x="112" y="246" text-anchor="middle">L1 L2 L3</text>
+  <text class="small" x="112" y="268" text-anchor="middle">N / PE</text>
+  <circle class="contact" cx="165" cy="190" r="5"/><circle class="contact" cx="165" cy="235" r="5"/><circle class="contact" cx="165" cy="280" r="5"/><circle class="contact" cx="165" cy="335" r="5"/><circle class="contact" cx="165" cy="380" r="5"/>
+  <text class="small" x="42" y="195">L1</text><text class="small" x="42" y="240">L2</text><text class="small" x="42" y="285">L3</text><text class="small" x="48" y="340">N</text><text class="small" x="43" y="385">PE</text>
+
+  <!-- QS0 -->
+  <rect class="box" x="225" y="155" width="165" height="172"/>
+  <text class="label" x="307" y="150" text-anchor="middle">QS0 总电源开关（3P）</text>
+  <path class="wire phase1" d="M170 190 H265 M290 190 H385"/><circle class="contact" cx="265" cy="190" r="4"/><circle class="contact" cx="290" cy="190" r="4"/><path class="wire-thin" d="M265 190 L286 177"/>
+  <path class="wire phase2" d="M170 235 H265 M290 235 H385"/><circle class="contact" cx="265" cy="235" r="4"/><circle class="contact" cx="290" cy="235" r="4"/><path class="wire-thin" d="M265 235 L286 222"/>
+  <path class="wire phase3" d="M170 280 H265 M290 280 H385"/><circle class="contact" cx="265" cy="280" r="4"/><circle class="contact" cx="290" cy="280" r="4"/><path class="wire-thin" d="M265 280 L286 267"/>
+  <path class="dash" d="M265 190 V280 M290 190 V280"/>
+
+  <!-- QF1 -->
+  <rect class="box" x="445" y="155" width="145" height="172"/>
+  <text class="label" x="518" y="150" text-anchor="middle">QF1 主回路跳开关（3P）</text>
+  <path class="wire phase1" d="M390 190 H472 M500 190 H590"/><path class="wire phase2" d="M390 235 H472 M500 235 H590"/><path class="wire phase3" d="M390 280 H472 M500 280 H590"/>
+  <rect class="contact" x="472" y="181" width="28" height="18"/><rect class="contact" x="472" y="226" width="28" height="18"/><rect class="contact" x="472" y="271" width="28" height="18"/>
+  <path class="dash" d="M486 190 V280"/>
+
+  <!-- KM main contacts -->
+  <rect class="box-blue" x="665" y="145" width="190" height="202"/>
+  <text class="label" x="760" y="132" text-anchor="middle">KM 三极常开主触点</text>
+  <path class="wire phase1" d="M590 190 H710 M745 190 H855"/><circle class="contact" cx="710" cy="190" r="4"/><circle class="contact" cx="745" cy="190" r="4"/><path class="wire-thin" d="M710 190 L740 174"/>
+  <path class="wire phase2" d="M590 235 H710 M745 235 H855"/><circle class="contact" cx="710" cy="235" r="4"/><circle class="contact" cx="745" cy="235" r="4"/><path class="wire-thin" d="M710 235 L740 219"/>
+  <path class="wire phase3" d="M590 280 H710 M745 280 H855"/><circle class="contact" cx="710" cy="280" r="4"/><circle class="contact" cx="745" cy="280" r="4"/><path class="wire-thin" d="M710 280 L740 264"/>
+  <path class="link" d="M727 190 V280"/>
+  <text class="tiny" x="760" y="325" text-anchor="middle">由下方 KM 线圈驱动</text>
+
+  <!-- main load -->
+  <rect class="box-blue" x="1155" y="155" width="220" height="175"/>
+  <text class="label" x="1265" y="190" text-anchor="middle">M1 三相负载</text>
+  <text class="small" x="1265" y="214" text-anchor="middle">航空电机 / 加温设备</text>
+  <text class="small" x="1265" y="236" text-anchor="middle">或三相交流设备</text>
+  <path class="wire phase1" d="M855 190 H1155"/><path class="wire phase2" d="M855 235 H1155"/><path class="wire phase3" d="M855 280 H1155"/>
+
+  <!-- N/PE -->
+  <path class="wire neutral" d="M170 335 H1060 V300 H1155"/>
+  <text class="small" x="980" y="322">N：中性线直通</text>
+  <path class="wire earth" d="M170 380 H1090 V340 H1155"/>
+  <path class="wire-thin earth" d="M1089 380 v18 m-14 0 h28 m-21 6 h14 m-7 6 h0"/>
+  <text class="small" x="980" y="402">PE：保护接地直通设备外壳</text>
+
+  <!-- PS1 tap -->
+  <path class="wire phase1" d="M405 190 V427 H470"/>
+  <path class="wire neutral" d="M405 335 V455 H470"/>
+  <circle class="node" cx="405" cy="190" r="4"/><circle class="node" cx="405" cy="335" r="4"/>
+  <rect class="box-blue" x="470" y="405" width="170" height="78"/>
+  <text class="label" x="555" y="435" text-anchor="middle">PS1 控制电源</text>
+  <text class="small" x="555" y="458" text-anchor="middle">L1-N AC → 28 V DC</text>
+
+  <!-- control section -->
+  <rect x="36" y="520" width="1528" height="490" rx="12" fill="#fbfdff" stroke="#c6d6e4" stroke-width="1.5"/>
+  <text class="section" x="60" y="553">B. 28 V DC 控制与指示回路</text>
+  <text class="small" x="1400" y="553" text-anchor="end">QF2 为控制回路跳开关；SA1 与 SA2 相互独立</text>
+
+  <!-- PS1 replicated connections -->
+  <path class="wire dcplus" d="M640 427 H710 V625 H755"/>
+  <path class="wire dcminus" d="M640 455 H710 V910 H1410"/>
+  <text class="small" x="650" y="418" fill="#b3364c">+28 V</text><text class="small" x="650" y="478" fill="#3c6eaa">0 V</text>
+
+  <!-- QF2 -->
+  <rect class="box" x="755" y="588" width="150" height="74"/>
+  <text class="label" x="830" y="580" text-anchor="middle">QF2 控制跳开关（2 A）</text>
+  <path class="wire dcplus" d="M755 625 H780 M880 625 H965"/>
+  <rect class="contact" x="780" y="615" width="100" height="20"/>
+  <path class="wire dcplus" d="M965 625 H1420"/>
+
+  <!-- branch labels -->
+  <text class="small" x="1010" y="607">受 QF2 保护的 +28 V 控制母线</text>
+
+  <!-- Relay K1 branch -->
+  <text class="label" x="90" y="667">继电器支路（独立开关 SA1）</text>
+  <path class="wire dcplus" d="M965 625 V715 H185"/>
+  <rect class="box" x="185" y="680" width="130" height="70"/>
+  <text class="small" x="250" y="744" text-anchor="middle">SA1 继电器开关</text>
+  <path class="wire-thin" d="M160 715 H220 M240 715 H315"/><circle class="contact" cx="220" cy="715" r="4"/><circle class="contact" cx="240" cy="715" r="4"/><path class="wire-thin" d="M220 715 L237 704"/>
+  <path class="wire dcplus" d="M315 715 H390"/>
+  <rect class="box-blue" x="390" y="680" width="140" height="70"/>
+  <text class="label" x="460" y="704" text-anchor="middle">K1 线圈</text>
+  <text class="small" x="460" y="742" text-anchor="middle">28 V DC 继电器</text>
+  <path class="wire dcminus" d="M530 715 V910"/>
+  <path class="link" d="M460 750 V800"/>
+
+  <!-- relay NO load -->
+  <text class="small" x="550" y="808">K1 常开辅助触点控制小负载/指示灯</text>
+  <path class="wire dcplus" d="M965 625 V830 H725"/>
+  <circle class="contact" cx="725" cy="830" r="4"/><circle class="contact" cx="755" cy="830" r="4"/><path class="wire-thin" d="M725 830 L750 816"/>
+  <text class="tiny" x="740" y="812" text-anchor="middle">K1 NO</text>
+  <path class="wire dcplus" d="M755 830 H815"/>
+  <circle cx="850" cy="830" r="27" fill="#fff9d7" stroke="#bf8c19" stroke-width="2"/><path d="M839 830 h22 M850 819 v22" stroke="#bf8c19" stroke-width="2"/>
+  <text class="small" x="850" y="875" text-anchor="middle">H1 指示/小负载</text>
+  <path class="wire dcminus" d="M877 830 V910"/>
+
+  <!-- Contactor KM branch -->
+  <text class="label" x="1010" y="667">接触器支路（独立开关 SA2）</text>
+  <path class="wire dcplus" d="M1130 625 V715 H1085"/>
+  <rect class="box" x="955" y="680" width="130" height="70"/>
+  <text class="small" x="1020" y="744" text-anchor="middle">SA2 接触器开关</text>
+  <path class="wire-thin" d="M1085 715 H1050 M1030 715 H955"/><circle class="contact" cx="1050" cy="715" r="4"/><circle class="contact" cx="1030" cy="715" r="4"/><path class="wire-thin" d="M1050 715 L1033 704"/>
+  <path class="wire dcplus" d="M955 715 H920"/>
+  <rect class="box-blue" x="765" y="680" width="155" height="70"/>
+  <text class="label" x="842" y="704" text-anchor="middle">KM 线圈</text>
+  <text class="small" x="842" y="742" text-anchor="middle">28 V DC 接触器</text>
+  <path class="wire dcminus" d="M765 715 V910"/>
+  <path class="link" d="M842 680 V575 H760 V347"/>
+  <text class="tiny" x="1040" y="690">机械联动至 KM 主触点</text>
+
+  <!-- note -->
+  <rect class="note" x="1020" y="800" width="455" height="130"/>
+  <text class="label" x="1040" y="830">设计说明</text>
+  <text class="small" x="1040" y="856">• QS0：总电源开关，控制三相主供电。</text>
+  <text class="small" x="1040" y="880">• QF1：三极主回路跳开关；QF2：控制回路跳开关。</text>
+  <text class="small" x="1040" y="904">• SA1 只控制 K1；SA2 只控制 KM。PE 永不作为工作回路。</text>
+
+  <line x1="55" y1="1030" x2="1545" y2="1030" stroke="#b9cadd" stroke-width="1"/>
+  <text class="tiny" x="60" y="1050">注：此图为功能示意，不替代特定机型 AMM、WDM、EWIS 或适航批准的设计资料。实际航空系统的电压、线径、保护定值与接地方式须按机型文件执行。</text>
+</svg>

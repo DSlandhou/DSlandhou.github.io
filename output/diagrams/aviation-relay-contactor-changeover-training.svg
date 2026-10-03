@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1250" viewBox="0 0 1800 1250">
+  <defs>
+    <style>
+      .wire{fill:none;stroke:#111;stroke-width:2.5;stroke-linecap:square;stroke-linejoin:miter}
+      .thin{fill:none;stroke:#111;stroke-width:1.35;stroke-linecap:square;stroke-linejoin:miter}
+      .dash{fill:none;stroke:#555;stroke-width:1.5;stroke-dasharray:8 5}
+      .sym{fill:#fff;stroke:#111;stroke-width:2}
+      .term{fill:#fff;stroke:#111;stroke-width:2}
+      .txt{font:16px Arial,Helvetica,sans-serif;fill:#111}
+      .small{font:13px Arial,Helvetica,sans-serif;fill:#111}
+      .tiny{font:11px Arial,Helvetica,sans-serif;fill:#111}
+      .head{font:bold 15px Arial,Helvetica,sans-serif;fill:#111;letter-spacing:1px}
+    </style>
+  </defs>
+
+  <rect x="20" y="20" width="1760" height="1210" fill="#fff" stroke="#111" stroke-width="2"/>
+  <path class="thin" d="M20 65 H1780 M20 600 H1780"/>
+  <text class="head" x="50" y="51">AC POWER / CHANGEOVER CONTACT TEST LOADS</text>
+  <text class="head" x="50" y="586">DC CONTROL / INDICATION</text>
+
+  <!-- AC INPUT -->
+  <text class="txt" x="90" y="114">X1</text>
+  <rect class="sym" x="85" y="135" width="75" height="330"/>
+  <text class="small" x="105" y="185">L</text><text class="small" x="103" y="325">N</text><text class="small" x="96" y="425">PE</text>
+  <circle class="term" cx="160" cy="180" r="5"/><circle class="term" cx="160" cy="320" r="5"/><circle class="term" cx="160" cy="420" r="5"/>
+  <path class="wire" d="M165 320 H1510"/><path class="wire" d="M165 420 H1510"/>
+  <path class="thin" d="M1500 420 V443 M1485 443 H1515 M1489 450 H1511 M1494 457 H1506"/>
+  <text class="tiny" x="1440" y="312">N</text><text class="tiny" x="1440" y="412">PE</text>
+
+  <!-- HL_AC1 before S0 -->
+  <path class="wire" d="M165 180 H215 V235 H270 V180"/>
+  <circle class="sym" cx="242" cy="235" r="22"/><path class="thin" d="M232 235 H252 M242 225 V245"/>
+  <text class="tiny" x="242" y="269" text-anchor="middle">HL_AC1</text><text class="tiny" x="242" y="281" text-anchor="middle">INPUT PWR</text>
+  <path class="wire" d="M242 257 V320"/>
+
+  <!-- S0 AC pole -->
+  <text class="txt" x="360" y="114" text-anchor="middle">S0</text><text class="tiny" x="360" y="131" text-anchor="middle">DPST MASTER</text>
+  <path class="wire" d="M270 180 H325 M395 180 H450"/>
+  <circle class="term" cx="325" cy="180" r="4"/><circle class="term" cx="395" cy="180" r="4"/><path class="wire" d="M325 180 L387 148"/>
+
+  <!-- HL_AC after S0 -->
+  <path class="wire" d="M425 180 V235 H480 V180"/>
+  <circle class="sym" cx="452" cy="235" r="22"/><path class="thin" d="M442 235 H462 M452 225 V245"/>
+  <text class="tiny" x="452" y="269" text-anchor="middle">HL_AC</text><text class="tiny" x="452" y="281" text-anchor="middle">AC BUS</text>
+  <path class="wire" d="M452 257 V320"/>
+
+  <!-- Q1 -->
+  <text class="txt" x="540" y="114" text-anchor="middle">Q1</text><text class="tiny" x="540" y="131" text-anchor="middle">AC CB</text>
+  <path class="wire" d="M450 180 H505 M575 180 H650"/><rect class="sym" x="505" y="169" width="70" height="22"/>
+  <path class="wire" d="M650 180 V510"/><text class="tiny" x="660" y="199">AC_BUS</text>
+
+  <!-- KA FOUR CHANGEOVER CONTACTS -->
+  <text class="txt" x="840" y="105" text-anchor="middle">KA</text><text class="small" x="840" y="124" text-anchor="middle">4 CHANGEOVER MAIN CONTACTS, 10 A</text>
+  <text class="tiny" x="706" y="160">a</text><text class="tiny" x="706" y="250">b</text><text class="tiny" x="706" y="340">c</text><text class="tiny" x="706" y="430">d</text>
+  <!-- KA a -->
+  <path class="wire" d="M650 170 H760"/><circle class="term" cx="760" cy="170" r="4"/><circle class="term" cx="850" cy="140" r="4"/><circle class="term" cx="850" cy="200" r="4"/><path class="wire" d="M760 170 L842 195"/><path class="thin" d="M760 170 L842 145"/>
+  <text class="tiny" x="748" y="164">2</text><text class="tiny" x="858" y="136">1</text><text class="tiny" x="858" y="213">3</text>
+  <rect class="sym" x="885" y="120" width="105" height="40"/><rect class="sym" x="885" y="180" width="105" height="40"/><text class="tiny" x="938" y="145" text-anchor="middle">R_KA_A_NO</text><text class="tiny" x="938" y="205" text-anchor="middle">R_KA_A_NC</text>
+  <path class="wire" d="M850 140 H885 M850 200 H885 M990 140 V320 M990 200 V320"/>
+  <!-- KA b -->
+  <path class="wire" d="M650 260 H760"/><circle class="term" cx="760" cy="260" r="4"/><circle class="term" cx="850" cy="230" r="4"/><circle class="term" cx="850" cy="290" r="4"/><path class="wire" d="M760 260 L842 285"/><path class="thin" d="M760 260 L842 235"/>
+  <text class="tiny" x="748" y="254">2</text><text class="tiny" x="858" y="226">1</text><text class="tiny" x="858" y="303">3</text>
+  <rect class="sym" x="885" y="210" width="105" height="40"/><rect class="sym" x="885" y="270" width="105" height="40"/><text class="tiny" x="938" y="235" text-anchor="middle">R_KA_B_NO</text><text class="tiny" x="938" y="295" text-anchor="middle">R_KA_B_NC</text>
+  <path class="wire" d="M850 230 H885 M850 290 H885 M990 230 V320 M990 290 V320"/>
+  <!-- KA c -->
+  <path class="wire" d="M650 350 H760"/><circle class="term" cx="760" cy="350" r="4"/><circle class="term" cx="850" cy="320" r="4"/><circle class="term" cx="850" cy="380" r="4"/><path class="wire" d="M760 350 L842 375"/><path class="thin" d="M760 350 L842 325"/>
+  <text class="tiny" x="748" y="344">2</text><text class="tiny" x="858" y="316">1</text><text class="tiny" x="858" y="393">3</text>
+  <rect class="sym" x="885" y="300" width="105" height="40"/><rect class="sym" x="885" y="360" width="105" height="40"/><text class="tiny" x="938" y="325" text-anchor="middle">R_KA_C_NO</text><text class="tiny" x="938" y="385" text-anchor="middle">R_KA_C_NC</text>
+  <path class="wire" d="M850 320 H885 M850 380 H885 M990 320 V450 M990 380 V450"/>
+  <!-- KA d -->
+  <path class="wire" d="M650 440 H760"/><circle class="term" cx="760" cy="440" r="4"/><circle class="term" cx="850" cy="410" r="4"/><circle class="term" cx="850" cy="470" r="4"/><path class="wire" d="M760 440 L842 465"/><path class="thin" d="M760 440 L842 415"/>
+  <text class="tiny" x="748" y="434">2</text><text class="tiny" x="858" y="406">1</text><text class="tiny" x="858" y="483">3</text>
+  <rect class="sym" x="885" y="390" width="105" height="40"/><rect class="sym" x="885" y="450" width="105" height="40"/><text class="tiny" x="938" y="415" text-anchor="middle">R_KA_D_NO</text><text class="tiny" x="938" y="475" text-anchor="middle">R_KA_D_NC</text>
+  <path class="wire" d="M850 410 H885 M850 470 H885 M990 410 V510 M990 470 V510"/>
+  <path class="dash" d="M805 170 V440"/>
+
+  <!-- KM THREE CHANGEOVER CONTACTS -->
+  <text class="txt" x="1260" y="105" text-anchor="middle">KM</text><text class="small" x="1260" y="124" text-anchor="middle">3 CHANGEOVER MAIN CONTACTS, 25 A</text>
+  <text class="tiny" x="1120" y="185">a</text><text class="tiny" x="1120" y="315">b</text><text class="tiny" x="1120" y="445">c</text>
+  <path class="wire" d="M1080 190 H1180"/><circle class="term" cx="1180" cy="190" r="4"/><circle class="term" cx="1270" cy="160" r="4"/><circle class="term" cx="1270" cy="220" r="4"/><path class="wire" d="M1180 190 L1262 215"/><path class="thin" d="M1180 190 L1262 165"/>
+  <text class="tiny" x="1168" y="184">2</text><text class="tiny" x="1278" y="156">1</text><text class="tiny" x="1278" y="233">3</text>
+  <rect class="sym" x="1305" y="140" width="110" height="40"/><rect class="sym" x="1305" y="200" width="110" height="40"/><text class="tiny" x="1360" y="165" text-anchor="middle">R_KM_A_NO</text><text class="tiny" x="1360" y="225" text-anchor="middle">R_KM_A_NC</text>
+  <path class="wire" d="M1270 160 H1305 M1270 220 H1305 M1415 160 V320 M1415 220 V320"/>
+  <path class="wire" d="M1080 320 H1180"/><circle class="term" cx="1180" cy="320" r="4"/><circle class="term" cx="1270" cy="290" r="4"/><circle class="term" cx="1270" cy="350" r="4"/><path class="wire" d="M1180 320 L1262 345"/><path class="thin" d="M1180 320 L1262 295"/>
+  <text class="tiny" x="1168" y="314">2</text><text class="tiny" x="1278" y="286">1</text><text class="tiny" x="1278" y="363">3</text>
+  <rect class="sym" x="1305" y="270" width="110" height="40"/><rect class="sym" x="1305" y="330" width="110" height="40"/><text class="tiny" x="1360" y="295" text-anchor="middle">R_KM_B_NO</text><text class="tiny" x="1360" y="355" text-anchor="middle">R_KM_B_NC</text>
+  <path class="wire" d="M1270 290 H1305 M1270 350 H1305 M1415 290 V450 M1415 350 V450"/>
+  <path class="wire" d="M1080 450 H1180"/><circle class="term" cx="1180" cy="450" r="4"/><circle class="term" cx="1270" cy="420" r="4"/><circle class="term" cx="1270" cy="480" r="4"/><path class="wire" d="M1180 450 L1262 475"/><path class="thin" d="M1180 450 L1262 425"/>
+  <text class="tiny" x="1168" y="444">2</text><text class="tiny" x="1278" y="416">1</text><text class="tiny" x="1278" y="493">3</text>
+  <rect class="sym" x="1305" y="400" width="110" height="40"/><rect class="sym" x="1305" y="460" width="110" height="40"/><text class="tiny" x="1360" y="425" text-anchor="middle">R_KM_C_NO</text><text class="tiny" x="1360" y="485" text-anchor="middle">R_KM_C_NC</text>
+  <path class="wire" d="M1270 420 H1305 M1270 480 H1305 M1415 420 V510 M1415 480 V510"/>
+  <path class="dash" d="M1225 190 V450"/>
+  <path class="wire" d="M650 510 H1080 V190 M1080 190 V450"/>
+
+  <!-- DC INPUT -->
+  <text class="txt" x="90" y="655">X2</text>
+  <rect class="sym" x="85" y="675" width="75" height="190"/>
+  <text class="small" x="96" y="735">DC+</text><text class="small" x="96" y="825">DC-</text>
+  <circle class="term" cx="160" cy="730" r="5"/><circle class="term" cx="160" cy="820" r="5"/>
+  <path class="wire" d="M165 820 H1740"/><text class="tiny" x="1630" y="810">DC- RETURN</text>
+
+  <!-- HL_DC1 before S0 -->
+  <path class="wire" d="M165 730 H215 V775 H270 V730"/>
+  <circle class="sym" cx="242" cy="775" r="22"/><path class="thin" d="M232 775 H252 M242 765 V785"/>
+  <text class="tiny" x="242" y="809" text-anchor="middle">HL_DC1</text><text class="tiny" x="242" y="821" text-anchor="middle">INPUT PWR</text>
+  <path class="wire" d="M242 797 V820"/>
+
+  <!-- S0 DC pole / link -->
+  <path class="wire" d="M270 730 H325 M395 730 H450"/><circle class="term" cx="325" cy="730" r="4"/><circle class="term" cx="395" cy="730" r="4"/><path class="wire" d="M325 730 L387 698"/>
+  <path class="dash" d="M360 180 V730"/><text class="tiny" x="376" y="465">MECH LINK</text>
+
+  <!-- HL_DC after S0 / Q2 -->
+  <path class="wire" d="M425 730 V775 H480 V730"/>
+  <circle class="sym" cx="452" cy="775" r="22"/><path class="thin" d="M442 775 H462 M452 765 V785"/>
+  <text class="tiny" x="452" y="809" text-anchor="middle">HL_DC</text><text class="tiny" x="452" y="821" text-anchor="middle">DC BUS</text>
+  <path class="wire" d="M452 797 V820"/>
+  <text class="txt" x="540" y="655" text-anchor="middle">Q2</text><text class="tiny" x="540" y="672" text-anchor="middle">DC CB</text>
+  <path class="wire" d="M450 730 H505 M575 730 H1710"/><rect class="sym" x="505" y="719" width="70" height="22"/>
+  <text class="tiny" x="1540" y="718">DC CONTROL BUS +28V</text>
+
+  <!-- KA CONTROL -->
+  <text class="small" x="840" y="665">KA CONTROL BRANCH</text>
+  <path class="wire" d="M760 730 V770 H825"/><text class="txt" x="885" y="748" text-anchor="middle">S1</text>
+  <circle class="term" cx="825" cy="770" r="4"/><circle class="term" cx="945" cy="770" r="4"/><path class="wire" d="M825 770 L937 715"/>
+  <path class="wire" d="M945 770 H1010"/><rect class="sym" x="1010" y="740" width="155" height="60"/>
+  <text class="txt" x="1088" y="767" text-anchor="middle">KA COIL</text><text class="tiny" x="1088" y="787" text-anchor="middle">28 VDC</text>
+  <path class="wire" d="M1165 770 H1210 V820"/>
+  <path class="wire" d="M985 770 V860 H1190 V770"/><circle class="sym" cx="1088" cy="860" r="23"/><path class="thin" d="M1078 860 H1098 M1088 850 V870"/>
+  <text class="tiny" x="1088" y="895" text-anchor="middle">HL_KA (BLUE)</text><path class="wire" d="M1088 883 V820"/>
+  <path class="dash" d="M1088 740 V555 H805 V510"/>
+
+  <!-- KM CONTROL -->
+  <text class="small" x="1370" y="665">KM CONTROL BRANCH</text>
+  <path class="wire" d="M1320 730 V770 H1385"/><text class="txt" x="1445" y="748" text-anchor="middle">S2</text>
+  <circle class="term" cx="1385" cy="770" r="4"/><circle class="term" cx="1505" cy="770" r="4"/><path class="wire" d="M1385 770 L1497 715"/>
+  <path class="wire" d="M1505 770 H1555"/><rect class="sym" x="1555" y="740" width="155" height="60"/>
+  <text class="txt" x="1633" y="767" text-anchor="middle">KM COIL</text><text class="tiny" x="1633" y="787" text-anchor="middle">28 VDC</text>
+  <path class="wire" d="M1710 770 H1740 V820"/>
+  <path class="wire" d="M1530 770 V860 H1730 V770"/><circle class="sym" cx="1633" cy="860" r="23"/><path class="thin" d="M1623 860 H1643 M1633 850 V870"/>
+  <text class="tiny" x="1633" y="895" text-anchor="middle">HL_KM (BLUE)</text><path class="wire" d="M1633 883 V820"/>
+  <path class="dash" d="M1633 740 V555 H1225 V510"/>
+
+  <!-- notes and title block -->
+  <rect class="sym" x="85" y="945" width="1030" height="175"/>
+  <text class="small" x="110" y="973">SIMULATION NOTES</text>
+  <text class="tiny" x="110" y="997">HL_AC1 and HL_DC1 are connected before S0. HL_AC and HL_DC are connected after S0.</text>
+  <text class="tiny" x="110" y="1018">S1 energizes KA and HL_KA in parallel. S2 energizes KM and HL_KM in parallel.</text>
+  <text class="tiny" x="110" y="1039">Every KA/KM group transfers from 2-3 NC to 1-2 NO when its coil is energized.</text>
+  <text class="tiny" x="110" y="1060">PE is bonded to chassis only; it is not a current-carrying control conductor.</text>
+  <text class="tiny" x="110" y="1096">CONTACT RATINGS: KA 10 A ALL CONTACTS. KM 25 A ALL CONTACTS.</text>
+  <path class="thin" d="M1250 1060 H1780 M1250 1105 H1780 M1430 1060 V1230 M1590 1060 V1230 M1700 1060 V1230"/>
+  <text class="tiny" x="1265" y="1084">DWG NO.</text><text class="txt" x="1265" y="1128">TRN-CHG-001</text>
+  <text class="tiny" x="1445" y="1084">REV</text><text class="txt" x="1445" y="1128">A</text>
+  <text class="tiny" x="1605" y="1084">SHEET</text><text class="txt" x="1605" y="1128">1 / 1</text>
+  <text class="tiny" x="50" y="1205">CONCEPTUAL TRAINING SCHEMATIC. VERIFY ACTUAL COMPONENT RATINGS, VOLTAGES, PROTECTION AND WIRING AGAINST APPROVED AIRCRAFT DATA.</text>
+</svg>
